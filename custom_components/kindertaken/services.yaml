@@ -1,0 +1,46 @@
+mark_done:
+  name: Taak afvinken
+  description: Vinkt een taak af voor een kind. Bij opnieuw aanroepen wordt hij ongedaan gemaakt (toggle).
+  fields:
+    child:
+      name: Kind
+      description: Naam van het kind.
+      required: true
+      example: "Emma"
+      selector:
+        text:
+    task:
+      name: Taak
+      description: Naam van de taak.
+      required: true
+      example: "Afwasmachine vullen"
+      selector:
+        select:
+          options:
+            - "Afwasmachine vullen"
+            - "Tafel dekken/opruimen"
+            - "Stofzuigen"
+            - "Vuilnis buiten"
+    date:
+      name: Datum
+      description: "Datum in formaat YYYY-MM-DD. Standaard: vandaag."
+      required: false
+      example: "2024-09-02"
+      selector:
+        text:
+
+reset_week:
+  name: Week resetten
+  description: Maakt alle afgevinkte taken van de huidige week ongedaan.
+
+add_child:
+  name: Kind toevoegen
+  description: Voegt een nieuw kind toe aan de planner zonder herstart van HA.
+  fields:
+    name:
+      name: Naam
+      description: Naam van het nieuwe kind.
+      required: true
+      example: "Sophie"
+      selector:
+        text:

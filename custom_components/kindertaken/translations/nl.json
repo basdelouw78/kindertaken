@@ -2,26 +2,30 @@
   "config": {
     "step": {
       "user": {
-        "title": "Kindertaken – Kinderen instellen",
+        "title": "Stap 1 van 3 – Kinderen instellen",
         "description": "Voer de namen van de kinderen in, gescheiden door komma's.\nBijvoorbeeld: {example}",
+        "data": { "children": "Namen (komma-gescheiden)" }
+      },
+      "tasks": {
+        "title": "Stap 2 van 3 – Taken instellen",
+        "description": "Vink de taken aan die je wilt gebruiken. Voeg eigen taken toe in het tekstveld (komma-gescheiden).",
         "data": {
-          "children": "Namen (komma-gescheiden)"
+          "task__Afwasmachine vullen": "🍽️ Afwasmachine vullen",
+          "task__Tafel dekken/opruimen": "🪑 Tafel dekken/opruimen",
+          "task__Stofzuigen": "🧹 Stofzuigen",
+          "task__Vuilnis buiten": "🗑️ Vuilnis buiten",
+          "extra_tasks": "Extra taken (komma-gescheiden, optioneel)"
         }
       },
       "schedule": {
-        "title": "Kindertaken – Weekplanning",
-        "description": "Wijs per dag en taak een kind toe. Kies '{nobody}' als niemand die taak doet op die dag.",
-        "data_description": {
-          "Maandag__Afwasmachine vullen": "Maandag – Afwasmachine vullen",
-          "Maandag__Tafel dekken/opruimen": "Maandag – Tafel dekken/opruimen",
-          "Maandag__Stofzuigen": "Maandag – Stofzuigen",
-          "Maandag__Vuilnis buiten": "Maandag – Vuilnis buiten"
-        }
+        "title": "Stap 3 van 3 – Weekplanning",
+        "description": "Wijs per dag en taak een kind toe. Kies 'niemand' als de taak die dag niet gedaan wordt."
       }
     },
     "error": {
       "min_one_child": "Voer minimaal één naam in.",
-      "max_eight_children": "Maximaal 8 kinderen worden ondersteund."
+      "max_eight_children": "Maximaal 8 kinderen worden ondersteund.",
+      "min_one_task": "Selecteer minimaal één taak."
     },
     "abort": {
       "already_configured": "Kindertaken is al geconfigureerd."
@@ -32,46 +36,34 @@
       "init": {
         "title": "Kindertaken – Aanpassen",
         "menu_options": {
-          "edit_children": "Kinderen beheren",
-          "edit_schedule": "Weekplanning aanpassen"
+          "edit_children": "👨‍👩‍👧 Kinderen beheren",
+          "edit_tasks": "📋 Taken beheren",
+          "edit_schedule": "📅 Weekplanning aanpassen"
         }
       },
       "edit_children": {
         "title": "Kinderen beheren",
-        "description": "Voer alle namen opnieuw in (komma-gescheiden). Verwijderde namen worden uit de planning gehaald.",
+        "description": "Voer alle namen opnieuw in (komma-gescheiden).",
+        "data": { "children": "Namen (komma-gescheiden)" }
+      },
+      "edit_tasks": {
+        "title": "Taken beheren",
+        "description": "Vink taken aan/uit en voeg eigen taken toe.",
         "data": {
-          "children": "Namen (komma-gescheiden)"
+          "task__Afwasmachine vullen": "🍽️ Afwasmachine vullen",
+          "task__Tafel dekken/opruimen": "🪑 Tafel dekken/opruimen",
+          "task__Stofzuigen": "🧹 Stofzuigen",
+          "task__Vuilnis buiten": "🗑️ Vuilnis buiten",
+          "extra_tasks": "Extra taken (komma-gescheiden)"
         }
       },
       "edit_schedule": {
-        "title": "Weekplanning aanpassen",
-        "description": "Pas de taken per dag aan."
+        "title": "Weekplanning aanpassen"
       }
     },
     "error": {
-      "min_one_child": "Voer minimaal één naam in."
-    }
-  },
-  "services": {
-    "mark_done": {
-      "name": "Taak afvinken",
-      "description": "Vinkt een taak af (of maakt hem ongedaan bij opnieuw aanroepen).",
-      "fields": {
-        "child": { "name": "Kind", "description": "Naam van het kind." },
-        "task": { "name": "Taak", "description": "Naam van de taak." },
-        "date": { "name": "Datum", "description": "Datum (YYYY-MM-DD). Standaard: vandaag." }
-      }
-    },
-    "reset_week": {
-      "name": "Week resetten",
-      "description": "Maakt alle afgevinkte taken van deze week ongedaan."
-    },
-    "add_child": {
-      "name": "Kind toevoegen",
-      "description": "Voegt een kind toe zonder herstart.",
-      "fields": {
-        "name": { "name": "Naam", "description": "Naam van het nieuwe kind." }
-      }
+      "min_one_child": "Voer minimaal één naam in.",
+      "min_one_task": "Selecteer minimaal één taak."
     }
   }
 }

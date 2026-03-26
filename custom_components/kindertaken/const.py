@@ -8,8 +8,8 @@ CONF_CHILDREN = "children"
 CONF_TASKS = "tasks"
 CONF_SCHEDULE = "schedule"
 
-# De 4 vaste taken
-TASKS = [
+# Standaard taken (gebruiker kan zelf aanpassen/toevoegen tijdens setup)
+DEFAULT_TASKS = [
     "Afwasmachine vullen",
     "Tafel dekken/opruimen",
     "Stofzuigen",
@@ -38,10 +38,5 @@ DAY_MAP = {
     "Zondag": 6,
 }
 
-# Taak iconen voor de UI
-TASK_ICONS = {
-    "Afwasmachine vullen": "🍽️",
-    "Tafel dekken/opruimen": "🪑",
-    "Stofzuigen": "🧹",
-    "Vuilnis buiten": "🗑️",
-}
+# Taak iconen voor de UI (automatisch toegewezen op volgorde)
+TASK_ICON_LIST = ["🍽️", "🪑", "🧹", "🗑️", "🛒", "🐶", "🌱", "🧺", "🪥", "🧴"]

@@ -1,13 +1,10 @@
 """Kindertaken Planner integratie voor Home Assistant."""
 from __future__ import annotations
-
 import logging
 from datetime import datetime
-
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.storage import Store
-
 from .const import DOMAIN, PLATFORMS
 
 _LOGGER = logging.getLogger(__name__)
@@ -16,68 +13,66 @@ STORAGE_VERSION = 1
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Stel de integratie in vanuit een config entry."""
     hass.data.setdefault(DOMAIN, {})
-
-    # Gebruik persistente opslag zodat afgevinkte taken overleven na herstart
     store = Store(hass, STORAGE_VERSION, STORAGE_KEY)
     stored = await store.async_load() or {}
     hass.data[DOMAIN][entry.entry_id] = {
-        "config": entry.data,
+        "config": dict(entry.data),
         "done": stored,
         "store": store,
     }
 
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
 
-    # --- Service: taak afvinken ---
     async def handle_mark_done(call):
+        """Toggle een taak als gedaan/ongedaan. Werkt voor week- én maandtaken."""
         child = call.data.get("child")
         task = call.data.get("task")
-        date = call.data.get("date", datetime.now().strftime("%Y-%m-%d"))
-        key = f"{date}__{child}__{task}"
-        entry_data = hass.data[DOMAIN][entry.entry_id]
-        done = entry_data["done"]
-        # Toggle: als al gedaan → ongedaan maken
-        done[key] = not done.get(key, False)
-        await entry_data["store"].async_save(done)
-        hass.bus.async_fire(f"{DOMAIN}_updated")
-        _LOGGER.debug("Toggle taak: %s voor %s op %s → %s", task, child, date, done[key])
+        date = call.data.get("date")          # voor weektaken: YYYY-MM-DD
+        month_key = call.data.get("month_key")  # voor maandtaken: YYYY-MM
 
-    # --- Service: week resetten ---
+        if month_key:
+            key = f"month__{month_key}__{child}__{task}"
+        else:
+            if not date:
+                date = datetime.now().strftime("%Y-%m-%d")
+            key = f"{date}__{child}__{task}"
+
+        ed = hass.data[DOMAIN][entry.entry_id]
+        ed["done"][key] = not ed["done"].get(key, False)
+        await ed["store"].async_save(ed["done"])
+        hass.bus.async_fire(f"{DOMAIN}_updated")
+
     async def handle_reset_week(call):
-        entry_data = hass.data[DOMAIN][entry.entry_id]
-        entry_data["done"] = {}
-        await entry_data["store"].async_save({})
+        ed = hass.data[DOMAIN][entry.entry_id]
+        # Verwijder alleen week-sleutels (beginnen niet met 'month__')
+        ed["done"] = {k: v for k, v in ed["done"].items() if k.startswith("month__")}
+        await ed["store"].async_save(ed["done"])
         hass.bus.async_fire(f"{DOMAIN}_updated")
-        _LOGGER.info("Alle taken gereset")
 
-    # --- Service: kind toevoegen (zonder herstart) ---
-    async def handle_add_child(call):
-        name = call.data.get("name", "").strip()
-        if not name:
-            return
-        config = dict(hass.data[DOMAIN][entry.entry_id]["config"])
-        children = list(config.get("children", []))
-        if name not in children:
-            children.append(name)
-            config["children"] = children
-            hass.config_entries.async_update_entry(entry, data=config)
-            hass.data[DOMAIN][entry.entry_id]["config"] = config
-            hass.bus.async_fire(f"{DOMAIN}_updated")
-            _LOGGER.info("Kind toegevoegd: %s", name)
+    async def handle_reset_month(call):
+        ed = hass.data[DOMAIN][entry.entry_id]
+        today = datetime.now().strftime("%Y-%m")
+        ed["done"] = {k: v for k, v in ed["done"].items() if f"month__{today}" not in k}
+        await ed["store"].async_save(ed["done"])
+        hass.bus.async_fire(f"{DOMAIN}_updated")
+
+    async def handle_reset_all(call):
+        ed = hass.data[DOMAIN][entry.entry_id]
+        ed["done"] = {}
+        await ed["store"].async_save({})
+        hass.bus.async_fire(f"{DOMAIN}_updated")
 
     hass.services.async_register(DOMAIN, "mark_done", handle_mark_done)
     hass.services.async_register(DOMAIN, "reset_week", handle_reset_week)
-    hass.services.async_register(DOMAIN, "add_child", handle_add_child)
+    hass.services.async_register(DOMAIN, "reset_month", handle_reset_month)
+    hass.services.async_register(DOMAIN, "reset_all", handle_reset_all)
 
-    # Luister naar config updates (opties flow)
     entry.async_on_unload(entry.add_update_listener(async_reload_entry))
-
     return True
 
 
-async def async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
+async def async_reload_entry(hass, entry):
     await hass.config_entries.async_reload(entry.entry_id)
 
 

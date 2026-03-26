@@ -2,64 +2,94 @@
   "config": {
     "step": {
       "user": {
-        "title": "Stap 1 van 3 – Kinderen instellen",
-        "description": "Voer de namen van de kinderen in, gescheiden door komma's.\nBijvoorbeeld: {example}",
+        "title": "Stap 1 van 5 – Kinderen",
+        "description": "Voer de namen in, gescheiden door komma's.\nBijvoorbeeld: {example}",
         "data": { "children": "Namen (komma-gescheiden)" }
       },
+      "colors": {
+        "title": "Stap 2 van 5 – Kleuren",
+        "description": "Kies een kleur voor elk kind.",
+        "data": {}
+      },
       "tasks": {
-        "title": "Stap 2 van 3 – Taken instellen",
-        "description": "Vink de taken aan die je wilt gebruiken. Voeg eigen taken toe in het tekstveld (komma-gescheiden).",
+        "title": "Stap 3 van 5 – Wekelijkse taken",
+        "description": "Vink de gewenste taken aan. Voeg eigen taken toe in het tekstveld.",
         "data": {
           "task__Afwasmachine vullen": "🍽️ Afwasmachine vullen",
           "task__Tafel dekken/opruimen": "🪑 Tafel dekken/opruimen",
           "task__Stofzuigen": "🧹 Stofzuigen",
           "task__Vuilnis buiten": "🗑️ Vuilnis buiten",
-          "extra_tasks": "Extra taken (komma-gescheiden, optioneel)"
+          "extra_tasks": "Extra wekelijkse taken (komma-gescheiden)"
+        }
+      },
+      "month_tasks": {
+        "title": "Stap 4 van 5 – Maandtaken",
+        "description": "Kies welke maandtaken je wilt bijhouden. Voeg eigen taken toe in het tekstveld.",
+        "data": {
+          "mtask__Kamer opruimen": "🏠 Kamer opruimen",
+          "mtask__Ramen lappen": "🪟 Ramen lappen",
+          "mtask__Badkamer schoonmaken": "🛁 Badkamer schoonmaken",
+          "extra_month_tasks": "Extra maandtaken (komma-gescheiden)"
         }
       },
       "schedule": {
-        "title": "Stap 3 van 3 – Weekplanning",
-        "description": "Wijs per dag en taak een kind toe. Kies 'niemand' als de taak die dag niet gedaan wordt."
+        "title": "Stap 5a van 5 – Weekplanning",
+        "description": "Wijs per dag en taak een kind toe."
+      },
+      "month_schedule": {
+        "title": "Stap 5b van 5 – Maandplanning",
+        "description": "Wijs per maand en taak een kind toe."
       }
     },
     "error": {
       "min_one_child": "Voer minimaal één naam in.",
-      "max_eight_children": "Maximaal 8 kinderen worden ondersteund.",
+      "max_eight_children": "Maximaal 8 kinderen.",
       "min_one_task": "Selecteer minimaal één taak."
     },
-    "abort": {
-      "already_configured": "Kindertaken is al geconfigureerd."
-    }
+    "abort": { "already_configured": "Kindertaken is al geconfigureerd." }
   },
   "options": {
     "step": {
       "init": {
-        "title": "Kindertaken – Aanpassen",
+        "title": "Kindertaken aanpassen",
         "menu_options": {
-          "edit_children": "👨‍👩‍👧 Kinderen beheren",
-          "edit_tasks": "📋 Taken beheren",
-          "edit_schedule": "📅 Weekplanning aanpassen"
+          "edit_children": "👨‍👩‍👧 Kinderen",
+          "edit_colors": "🎨 Kleuren per kind",
+          "edit_tasks": "📋 Wekelijkse taken",
+          "edit_month_tasks": "🗓️ Maandtaken",
+          "edit_schedule": "📅 Weekplanning",
+          "edit_month_schedule": "📆 Maandplanning"
         }
       },
       "edit_children": {
         "title": "Kinderen beheren",
-        "description": "Voer alle namen opnieuw in (komma-gescheiden).",
         "data": { "children": "Namen (komma-gescheiden)" }
       },
+      "edit_colors": {
+        "title": "Kleuren aanpassen",
+        "description": "Kies een kleur voor elk kind."
+      },
       "edit_tasks": {
-        "title": "Taken beheren",
-        "description": "Vink taken aan/uit en voeg eigen taken toe.",
+        "title": "Wekelijkse taken",
         "data": {
           "task__Afwasmachine vullen": "🍽️ Afwasmachine vullen",
           "task__Tafel dekken/opruimen": "🪑 Tafel dekken/opruimen",
           "task__Stofzuigen": "🧹 Stofzuigen",
           "task__Vuilnis buiten": "🗑️ Vuilnis buiten",
-          "extra_tasks": "Extra taken (komma-gescheiden)"
+          "extra_tasks": "Extra taken"
         }
       },
-      "edit_schedule": {
-        "title": "Weekplanning aanpassen"
-      }
+      "edit_month_tasks": {
+        "title": "Maandtaken",
+        "data": {
+          "mtask__Kamer opruimen": "🏠 Kamer opruimen",
+          "mtask__Ramen lappen": "🪟 Ramen lappen",
+          "mtask__Badkamer schoonmaken": "🛁 Badkamer schoonmaken",
+          "extra_month_tasks": "Extra maandtaken"
+        }
+      },
+      "edit_schedule": { "title": "Weekplanning aanpassen" },
+      "edit_month_schedule": { "title": "Maandplanning aanpassen" }
     },
     "error": {
       "min_one_child": "Voer minimaal één naam in.",

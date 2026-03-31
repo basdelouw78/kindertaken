@@ -1,46 +1,58 @@
 mark_done:
   name: Taak afvinken
-  description: Vinkt een taak af voor een kind. Bij opnieuw aanroepen wordt hij ongedaan gemaakt (toggle).
+  description: Toggle een taak als gedaan/ongedaan.
   fields:
+    key:
+      name: Taak-sleutel
+      description: Interne sleutel van de taak (uit sensor attributen).
+      required: false
+      example: "rot__2024-09-02__Emma__Afwasmachine vullen"
+      selector:
+        text:
     child:
       name: Kind
-      description: Naam van het kind.
-      required: true
-      example: "Emma"
+      description: Naam van het kind (alternatief voor key).
+      required: false
       selector:
         text:
     task:
       name: Taak
       description: Naam van de taak.
-      required: true
-      example: "Afwasmachine vullen"
-      selector:
-        select:
-          options:
-            - "Afwasmachine vullen"
-            - "Tafel dekken/opruimen"
-            - "Stofzuigen"
-            - "Vuilnis buiten"
-    date:
-      name: Datum
-      description: "Datum in formaat YYYY-MM-DD. Standaard: vandaag."
       required: false
-      example: "2024-09-02"
       selector:
         text:
 
 reset_week:
   name: Week resetten
-  description: Maakt alle afgevinkte taken van de huidige week ongedaan.
+  description: Maakt alle afgevinkte weektaken ongedaan (maandtaken blijven).
 
-add_child:
-  name: Kind toevoegen
-  description: Voegt een nieuw kind toe aan de planner zonder herstart van HA.
+reset_all:
+  name: Alles resetten
+  description: Maakt ALLE afgevinkte taken ongedaan.
+
+set_presence:
+  name: Aanwezigheid instellen
+  description: Handmatige override van aanwezigheid voor een kind. Gebruik present=null om te resetten.
   fields:
-    name:
-      name: Naam
-      description: Naam van het nieuwe kind.
+    child:
+      name: Kind
+      description: Naam van het kind.
       required: true
-      example: "Sophie"
+      selector:
+        text:
+    present:
+      name: Aanwezig
+      description: "true = aanwezig, false = niet aanwezig, null/weglaten = automatisch (reset override)"
+      required: false
+      selector:
+        boolean:
+
+clear_presence_override:
+  name: Aanwezigheid override wissen
+  description: Reset de handmatige aanwezigheidsoverride — systeem gebruikt weer het ingestelde patroon.
+  fields:
+    child:
+      name: Kind
+      required: true
       selector:
         text:

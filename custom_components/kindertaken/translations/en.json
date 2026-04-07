@@ -1,0 +1,111 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Kindertaken Planner",
+        "description": "Choose your language to continue.",
+        "data": { "taal": "Language" }
+      },
+      "children": {
+        "title": "Step 1 — Children",
+        "description": "{uitleg}",
+        "data": {
+          "children": "Names (comma-separated, e.g. Emma, Liam)",
+          "samen": "All children always home at the same time"
+        }
+      },
+      "child_a": {
+        "title": "Child {n} of {total}: {kind}",
+        "description": "{uitleg}",
+        "data": {
+          "kleur":   "Colour on the dashboard",
+          "patroon": "When is {kind} at your home?"
+        }
+      },
+      "child_b": {
+        "title": "Child {n} of {total}: {kind} — continued",
+        "description": "{uitleg}",
+        "data": {
+          "startdatum":    "Start date  (first Monday of week A,  e.g. 2025-01-06)",
+          "startweek":     "{kind} is present in the start week",
+          "dag_0":"Monday present",    "dag_1":"Tuesday present",
+          "dag_2":"Wednesday present", "dag_3":"Thursday present",
+          "dag_4":"Friday present",    "dag_5":"Saturday present", "dag_6":"Sunday present",
+          "mweek_0":"1st week", "mweek_1":"2nd week", "mweek_2":"3rd week",
+          "mweek_3":"4th week", "mweek_laatste":"Last week",
+          "blok_0":"Monday — no time for tasks",  "blok_1":"Tuesday — no time for tasks",
+          "blok_2":"Wednesday — no time",         "blok_3":"Thursday — no time",
+          "blok_4":"Friday — no time",            "blok_5":"Saturday — no time", "blok_6":"Sunday — no time"
+        }
+      },
+      "rotation_tasks": {
+        "title": "Daily rotation tasks",
+        "description": "{uitleg}",
+        "data": {
+          "taak_0":"Load dishwasher", "taak_1":"Set / clear table",
+          "extra_taken":"Extra daily tasks (comma-separated)",
+          "volgorde":"Rotation order (names, comma-separated)"
+        }
+      },
+      "week_tasks": {
+        "title": "Weekly tasks",
+        "description": "{uitleg}",
+        "data": {
+          "wtaak_0":"Vacuum",         "wtaak_1":"Take out bins",
+          "wtaak_2":"Take out plastic","wtaak_3":"Take out container",
+          "wtaak_4":"Empty indoor bins",
+          "wdag_0":"Vacuum — which day?",     "wdag_1":"Bins — which day?",
+          "wdag_2":"Plastic — which day?",    "wdag_3":"Container — which day?",
+          "wdag_4":"Indoor bins — which day?",
+          "wmodus_0":"Vacuum — distribution", "wmodus_1":"Bins — distribution",
+          "wmodus_2":"Plastic — distribution","wmodus_3":"Container — distribution",
+          "wmodus_4":"Indoor bins — distribution",
+          "extra_taken":"Extra weekly tasks (comma-separated)"
+        }
+      },
+      "month_tasks": {
+        "title": "Monthly tasks",
+        "description": "{uitleg}",
+        "data": {
+          "mtaak_0":"Tidy room", "mtaak_1":"Clean windows", "mtaak_2":"Clean bathroom",
+          "mwk_0":"Tidy room — which week?",    "mwk_1":"Windows — which week?",   "mwk_2":"Bathroom — which week?",
+          "mdag_0":"Tidy room — which day?",    "mdag_1":"Windows — which day?",    "mdag_2":"Bathroom — which day?",
+          "extra_taken":"Extra monthly tasks (comma-separated)"
+        }
+      }
+    },
+    "error": {
+      "min_one_child":      "Enter at least one name.",
+      "max_eight_children": "Maximum 8 children."
+    },
+    "abort": { "already_configured": "Kindertaken is already configured." }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "What would you like to change?",
+        "menu_options": {
+          "edit_children":       "👨‍👩‍👧  Children (names)",
+          "edit_child_settings": "⚙️  Child settings (presence, colour, blocked days)",
+          "edit_rotation_tasks": "🔄  Daily rotation tasks",
+          "edit_week_tasks":     "📅  Weekly tasks",
+          "edit_month_tasks":    "🗓️  Monthly tasks"
+        }
+      },
+      "edit_children":       { "title": "Update children",      "data": { "children": "Names" } },
+      "edit_child_settings": { "title": "Choose a child",        "data": { "kind": "Which child?" } },
+      "edit_child_a":  { "title": "Settings {kind}", "description": "{uitleg}", "data": { "kleur":"Colour","patroon":"Presence pattern" } },
+      "edit_child_b":  { "title": "Settings {kind} — cont.", "description": "{uitleg}", "data": {
+        "startdatum":"Start date","startweek":"Present in start week",
+        "dag_0":"Monday","dag_1":"Tuesday","dag_2":"Wednesday","dag_3":"Thursday","dag_4":"Friday","dag_5":"Saturday","dag_6":"Sunday",
+        "mweek_0":"1st week","mweek_1":"2nd week","mweek_2":"3rd week","mweek_3":"4th week","mweek_laatste":"Last week",
+        "blok_0":"Mon — no time","blok_1":"Tue — no time","blok_2":"Wed — no time","blok_3":"Thu — no time",
+        "blok_4":"Fri — no time","blok_5":"Sat — no time","blok_6":"Sun — no time"
+      }},
+      "edit_rotation_tasks": { "title": "Daily rotation tasks", "description": "{uitleg}" },
+      "edit_week_tasks":     { "title": "Weekly tasks",          "description": "{uitleg}" },
+      "edit_month_tasks":    { "title": "Monthly tasks",         "description": "{uitleg}" }
+    },
+    "error": { "min_one_child": "Enter at least one name." }
+  }
+}

@@ -1,5 +1,5 @@
 /**
- * Kindertaken Planner Card v2.1
+ * Kindertaken Planner Card v2.2
  * Co-ouderschap + blokdagen + rotatie/week/maandtaken
  */
 
@@ -30,7 +30,6 @@ class KindertakenCard extends HTMLElement {
     var month_ov    = a.month_overview || [];
     var coparenting = a.coparenting || {};
 
-    // Taken per kind voor vandaag
     var todayData  = week[today_name] || {};
     var todayTasks = todayData.tasks || [];
     var todayPres  = todayData.presence || {};
@@ -55,7 +54,6 @@ class KindertakenCard extends HTMLElement {
     return '<div class="hdr"><span style="font-size:32px">📋</span><div><div class="hdr-t">Kindertaken</div><div class="hdr-s">'+sub+'</div></div></div>';
   }
 
-  // ── Vandaag ────────────────────────────────────────────────────────────────
   _todaySection(children, byChild, themes, todayPres) {
     if (!children.length) return '<div class="sec"><p class="muted">Geen kinderen ingesteld.</p></div>';
     var cards = children.map(function(child) {
@@ -67,7 +65,7 @@ class KindertakenCard extends HTMLElement {
       var allDone= tasks.length>0 && tasks.every(function(t){return t.done;});
 
       var statusBadge = "";
-      if (absent)  statusBadge = '<span class="badge absent">🏠 Niet thuis</span>';
+      if (absent)       statusBadge = '<span class="badge absent">🏠 Niet thuis</span>';
       else if (blocked) statusBadge = '<span class="badge blocked">⛔ Blokdag</span>';
       else if (allDone) statusBadge = '<span class="badge done-badge">✅ Klaar!</span>';
 
@@ -102,7 +100,6 @@ class KindertakenCard extends HTMLElement {
     return '<div class="sec today-s"><div class="sl">📅 Vandaag</div><div class="today-g">'+cards+'</div></div>';
   }
 
-  // ── Weekkalender ──────────────────────────────────────────────────────────
   _weekSection(week, themes, children, coparenting) {
     var cols = DAYS_FULL.map(function(day,i){
       var data  = week[day] || {};
@@ -112,16 +109,14 @@ class KindertakenCard extends HTMLElement {
 
       var badges = "";
       if (!tasks.length) {
-        // Laat zien welke kinderen er niet zijn op deze dag
         var absent = children.filter(function(c){ return pres[c] && !pres[c].present; });
         if (absent.length) {
           badges = absent.map(function(c){
             var th = themes[c]||{bg:"#888",emoji:"?"};
             return '<div class="wb-absent" title="'+c+' niet thuis" style="background:'+th.bg+'">'+th.emoji+'</div>';
-          }).join("") || '<div class="we">—</div>';
-        } else {
-          badges = '<div class="we">—</div>';
+          }).join("");
         }
+        if (!badges) badges = '<div class="we">—</div>';
       } else {
         tasks.forEach(function(t){
           var th = themes[t.child]||{bg:"#1565C0",emoji:"⭐"};
@@ -130,7 +125,6 @@ class KindertakenCard extends HTMLElement {
             th.emoji+' <span class="wn">'+t.task.split(/[\s\/]/)[0]+'</span>'+
           '</div>';
         });
-        // Afwezige kinderen als kleine indicator
         children.forEach(function(c){
           if (pres[c] && !pres[c].present) {
             var th = themes[c]||{bg:"#888",emoji:"?"};
@@ -145,7 +139,6 @@ class KindertakenCard extends HTMLElement {
       '</div>';
     }).join("");
 
-    // Co-ouderschap legenda voor deze week
     var coLegend = children.map(function(c){
       var co  = coparenting[c] || {present_this_week:true};
       var th  = themes[c]||{bg:"#1565C0",emoji:"⭐"};
@@ -159,7 +152,6 @@ class KindertakenCard extends HTMLElement {
     '</div>';
   }
 
-  // ── Maandoverzicht ────────────────────────────────────────────────────────
   _monthSection(month_ov, themes, children) {
     var rows = month_ov.map(function(mt){
       var hdr = '<div class="mo-hdr"><span class="mo-name">🏠 '+mt.name+'</span>' +
@@ -206,7 +198,6 @@ class KindertakenCard extends HTMLElement {
     ".month-s{background:var(--secondary-background-color,#f4f4f4)}",
     ".sl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--secondary-text-color);margin-bottom:12px}",
     ".muted{color:var(--secondary-text-color);font-size:13px}",
-    /* Kind-kaarten */
     ".today-g{display:flex;gap:10px;flex-wrap:wrap}",
     ".cc{flex:1;min-width:140px;border-radius:14px;background:linear-gradient(145deg,var(--lt),var(--bg));color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.18);overflow:hidden;transition:opacity .2s}",
     ".cc-absent{background:var(--secondary-background-color,#f4f4f4)!important;box-shadow:none;border:2px dashed var(--divider-color,#ccc)}",
@@ -220,14 +211,12 @@ class KindertakenCard extends HTMLElement {
     ".cb{padding:4px 10px 10px;display:flex;flex-direction:column;gap:5px}",
     ".glbl{font-size:10px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.8px;margin-top:4px;padding-left:2px}",
     ".free{padding:8px 4px;font-size:13px;text-align:center;opacity:.7}",
-    /* Taak-knoppen */
     ".tbtn{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.2);border:none;border-radius:10px;padding:8px 10px;cursor:pointer;color:#fff;font-size:13px;font-weight:600;text-align:left;width:100%;transition:background .15s,opacity .15s}",
     ".tbtn:hover{background:rgba(255,255,255,.35)}",
     ".tbtn.done{background:rgba(255,255,255,.08);opacity:.5;text-decoration:line-through}",
     ".ti{font-size:17px;flex-shrink:0}",
     ".tn{flex:1}",
     ".tk{font-size:17px;flex-shrink:0}",
-    /* Week grid */
     ".wk-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}",
     ".wc{border-radius:10px;border:2px solid var(--divider-color,#e0e0e0);overflow:hidden}",
     ".wc.today{border-color:#1a237e;box-shadow:0 2px 10px rgba(26,35,126,.25)}",
@@ -242,13 +231,11 @@ class KindertakenCard extends HTMLElement {
     ".wb-absent{border-radius:5px;padding:3px 4px;font-size:9px;color:var(--secondary-text-color);display:flex;align-items:center;justify-content:center;border:1.5px dashed;opacity:.45}",
     ".wn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:44px}",
     ".we{color:var(--disabled-text-color,#bbb);font-size:11px;text-align:center;padding:8px 0}",
-    /* Legenda */
     ".leg-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}",
     ".leg{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--secondary-text-color)}",
     ".leg-absent{opacity:.5;text-decoration:line-through}",
     ".ldot{font-size:14px}",
     ".type-leg{display:flex;gap:12px;margin-top:6px;font-size:11px;color:var(--secondary-text-color)}",
-    /* Maand */
     ".mo-list{display:flex;flex-direction:column;gap:10px}",
     ".mo-hr{border:none;border-top:1px solid var(--divider-color,#e8e8e8);margin:4px 0}",
     ".mo-hdr{display:flex;align-items:center;gap:8px;margin-bottom:6px}",
@@ -269,22 +256,53 @@ class KindertakenCard extends HTMLElement {
   static getStubConfig(){ return {entity:"sensor.kindertaken_week"}; }
 }
 
+// FIX: guard against _config being undefined in connectedCallback
 class KindertakenCardEditor extends HTMLElement {
-  setConfig(c){ this._config=c||{}; }
-  connectedCallback(){
-    var e=(this._config.entity)||"sensor.kindertaken_week";
-    this.innerHTML='<div style="padding:16px"><label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px">Sensor entiteit</label><input id="e" type="text" value="'+e+'" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:8px;font-size:14px"></div>';
-    var self=this;
-    this.querySelector("#e").addEventListener("change",function(ev){
-      self.dispatchEvent(new CustomEvent("config-changed",{detail:{config:{entity:ev.target.value.trim()}},bubbles:true,composed:true}));
+  constructor() {
+    super();
+    this._config = {};  // altijd initialiseren in constructor
+  }
+
+  setConfig(c) {
+    this._config = c || {};
+    // Als de DOM al gebouwd is, update de input waarde
+    var inp = this.querySelector("#e");
+    if (inp) inp.value = this._config.entity || "sensor.kindertaken_week";
+  }
+
+  connectedCallback() {
+    // Veilig: _config is altijd een object dankzij constructor + setConfig
+    var e = (this._config && this._config.entity) || "sensor.kindertaken_week";
+    this.innerHTML =
+      '<div style="padding:16px">' +
+        '<label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px">Sensor entiteit</label>' +
+        '<input id="e" type="text" value="' + e + '" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:8px;font-size:14px">' +
+        '<p style="font-size:11px;color:#888;margin-top:4px">Standaard: sensor.kindertaken_week</p>' +
+      '</div>';
+    var self = this;
+    this.querySelector("#e").addEventListener("change", function(ev) {
+      self.dispatchEvent(new CustomEvent("config-changed", {
+        detail: { config: { entity: ev.target.value.trim() } },
+        bubbles: true,
+        composed: true,
+      }));
     });
   }
 }
 
-customElements.define("kindertaken-card",KindertakenCard);
-customElements.define("kindertaken-card-editor",KindertakenCardEditor);
-window.customCards=window.customCards||[];
-if(!window.customCards.find(function(c){return c.type==="kindertaken-card";})){
-  window.customCards.push({type:"kindertaken-card",name:"Kindertaken Planner",description:"Co-ouderschap + rotatie/week/maandtaken.",preview:true});
+customElements.define("kindertaken-card", KindertakenCard);
+customElements.define("kindertaken-card-editor", KindertakenCardEditor);
+window.customCards = window.customCards || [];
+if (!window.customCards.find(function(c){ return c.type === "kindertaken-card"; })) {
+  window.customCards.push({
+    type: "kindertaken-card",
+    name: "Kindertaken Planner",
+    description: "Co-ouderschap + rotatie/week/maandtaken.",
+    preview: true,
+  });
 }
-console.info("%c KINDERTAKEN %c v2.1 ","color:white;background:#1a237e;padding:3px 8px;border-radius:4px 0 0 4px;font-weight:700","color:#1a237e;background:#fff;padding:3px 8px;border-radius:0 4px 4px 0;border:1px solid #1a237e");
+console.info(
+  "%c KINDERTAKEN %c v2.2 ",
+  "color:white;background:#1a237e;padding:3px 8px;border-radius:4px 0 0 4px;font-weight:700",
+  "color:#1a237e;background:#fff;padding:3px 8px;border-radius:0 4px 4px 0;border:1px solid #1a237e"
+);

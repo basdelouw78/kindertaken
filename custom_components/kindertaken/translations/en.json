@@ -30,13 +30,14 @@
           "startweek":     "Present in the start week",
           "dag_0": "Monday present",    "dag_1": "Tuesday present",
           "dag_2": "Wednesday present", "dag_3": "Thursday present",
-          "dag_4": "Friday present",    "dag_5": "Saturday present", "dag_6": "Sunday present",
+          "dag_4": "Friday present",    "dag_5": "Saturday present",
+          "dag_6": "Sunday present",
           "mweek_0": "1st week of the month", "mweek_1": "2nd week",
           "mweek_2": "3rd week",              "mweek_3": "4th week",
           "mweek_laatste": "Last week of the month",
-          "blok_0": "Monday — no time for tasks",  "blok_1": "Tuesday — no time",
-          "blok_2": "Wednesday — no time",         "blok_3": "Thursday — no time",
-          "blok_4": "Friday — no time",            "blok_5": "Saturday — no time",
+          "blok_0": "Monday — no time for tasks", "blok_1": "Tuesday — no time",
+          "blok_2": "Wednesday — no time",        "blok_3": "Thursday — no time",
+          "blok_4": "Friday — no time",           "blok_5": "Saturday — no time",
           "blok_6": "Sunday — no time"
         }
       },
@@ -54,14 +55,14 @@
         "title": "Weekly tasks",
         "description": "{uitleg}",
         "data": {
-          "wtaak_0": "Vacuum",          "wtaak_1": "Take out bins",
-          "wtaak_2": "Take out plastic","wtaak_3": "Take out container",
+          "wtaak_0": "Vacuum",           "wtaak_1": "Take out bins",
+          "wtaak_2": "Take out plastic", "wtaak_3": "Take out container",
           "wtaak_4": "Empty indoor bins",
-          "wdag_0":  "Vacuum — which day?",      "wdag_1":  "Bins — which day?",
-          "wdag_2":  "Plastic — which day?",     "wdag_3":  "Container — which day?",
+          "wdag_0":  "Vacuum — which day?",       "wdag_1": "Bins — which day?",
+          "wdag_2":  "Plastic — which day?",      "wdag_3": "Container — which day?",
           "wdag_4":  "Indoor bins — which day?",
-          "wmodus_0":"Vacuum — distribution",    "wmodus_1":"Bins — distribution",
-          "wmodus_2":"Plastic — distribution",   "wmodus_3":"Container — distribution",
+          "wmodus_0":"Vacuum — distribution",     "wmodus_1": "Bins — distribution",
+          "wmodus_2":"Plastic — distribution",    "wmodus_3": "Container — distribution",
           "wmodus_4":"Indoor bins — distribution",
           "extra_taken":"Extra weekly tasks (comma-separated)"
         }
@@ -70,10 +71,10 @@
         "title": "Monthly tasks",
         "description": "{uitleg}",
         "data": {
-          "mtaak_0": "Tidy room",     "mtaak_1": "Clean windows", "mtaak_2": "Clean bathroom",
-          "mwk_0":   "Tidy room — which week?",  "mwk_1": "Windows — which week?",
+          "mtaak_0": "Tidy room",      "mtaak_1": "Clean windows",  "mtaak_2": "Clean bathroom",
+          "mwk_0":   "Tidy room — which week?",   "mwk_1": "Windows — which week?",
           "mwk_2":   "Bathroom — which week?",
-          "mdag_0":  "Tidy room — which day?",   "mdag_1": "Windows — which day?",
+          "mdag_0":  "Tidy room — which day?",    "mdag_1": "Windows — which day?",
           "mdag_2":  "Bathroom — which day?",
           "extra_taken":"Extra monthly tasks (comma-separated)"
         }
@@ -99,10 +100,12 @@
       },
       "edit_children": {
         "title": "Update children",
+        "description": "Re-enter all names comma-separated. Removing a name removes that child from the schedule.",
         "data": { "children": "Names (comma-separated)" }
       },
       "edit_child_settings": {
         "title": "Choose a child",
+        "description": "Choose the child whose colour, presence or blocked days you want to change.",
         "data": { "kind": "Which child?" }
       },
       "edit_child_a": {
@@ -128,11 +131,43 @@
         }
       },
       "edit_rotation_tasks": {
-        "title": "Daily rotation tasks", "description": "{uitleg}",
-        "data": { "taak_0": "Load dishwasher", "taak_1": "Set / clear table", "extra_taken": "Extra tasks", "volgorde": "Order" }
+        "title": "Update daily rotation tasks",
+        "description": "Check the tasks you want to use. Add custom tasks in the text field.",
+        "data": {
+          "taak_0":     "Load dishwasher",
+          "taak_1":     "Set / clear table",
+          "extra_taken":"Extra tasks (comma-separated)",
+          "volgorde":   "Rotation order (comma-separated)"
+        }
       },
-      "edit_week_tasks":  { "title": "Weekly tasks",  "description": "{uitleg}" },
-      "edit_month_tasks": { "title": "Monthly tasks",  "description": "{uitleg}" }
+      "edit_week_tasks": {
+        "title": "Update weekly tasks",
+        "description": "Check the tasks you want. Set the day and distribution per task.",
+        "data": {
+          "wtaak_0": "Vacuum",           "wtaak_1": "Take out bins",
+          "wtaak_2": "Take out plastic", "wtaak_3": "Take out container",
+          "wtaak_4": "Empty indoor bins",
+          "wdag_0":  "Vacuum — which day?",       "wdag_1": "Bins — which day?",
+          "wdag_2":  "Plastic — which day?",      "wdag_3": "Container — which day?",
+          "wdag_4":  "Indoor bins — which day?",
+          "wmodus_0":"Vacuum — distribution",     "wmodus_1": "Bins — distribution",
+          "wmodus_2":"Plastic — distribution",    "wmodus_3": "Container — distribution",
+          "wmodus_4":"Indoor bins — distribution",
+          "extra_taken":"Extra tasks (comma-separated)"
+        }
+      },
+      "edit_month_tasks": {
+        "title": "Update monthly tasks",
+        "description": "Check the tasks you want. Set the week and day of the month per task.",
+        "data": {
+          "mtaak_0": "Tidy room",      "mtaak_1": "Clean windows",  "mtaak_2": "Clean bathroom",
+          "mwk_0":   "Tidy room — which week?",   "mwk_1": "Windows — which week?",
+          "mwk_2":   "Bathroom — which week?",
+          "mdag_0":  "Tidy room — which day?",    "mdag_1": "Windows — which day?",
+          "mdag_2":  "Bathroom — which day?",
+          "extra_taken":"Extra tasks (comma-separated)"
+        }
+      }
     },
     "error": { "min_one_child": "Enter at least one name." }
   }

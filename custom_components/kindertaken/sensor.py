@@ -1,4 +1,4 @@
-"""Sensor platform v2.1 — aanwezigheid-bewust."""
+"""Sensor platform — aanwezigheid-bewust."""
 from __future__ import annotations
 import logging
 from datetime import datetime, date, timedelta
@@ -73,7 +73,6 @@ class KindertakenDashboardSensor(SensorEntity):
         today_name = DAYS_NL[today.weekday()]
         week_start = today - timedelta(days=today.weekday())
 
-        # Bouw week (7 dagen)
         week = {}
         for day_name in DAYS_NL:
             offset   = DAY_MAP[day_name]
@@ -97,7 +96,6 @@ class KindertakenDashboardSensor(SensorEntity):
                 th  = child_themes.get(t["child"], {})
                 tasks_list.append({**t,"icon":"🗓️","done":done_map.get(key,False),"date":date_str,"month_key":month_key,"key":key,**{k:th.get(k,"") for k in ["bg","light","emoji"]}})
 
-            # Aanwezigheidsstatus per kind voor deze dag
             presence_status = {}
             for child in children:
                 pres_cfg = child_presence.get(child, {})
@@ -114,7 +112,6 @@ class KindertakenDashboardSensor(SensorEntity):
                 "presence":     presence_status,
             }
 
-        # Maandoverzicht
         month_overview = []
         for mt in month_tasks:
             nexts = next_month_occurrence(mt, children, child_presence, today)
@@ -130,7 +127,6 @@ class KindertakenDashboardSensor(SensorEntity):
                 "next_by_child": child_info,
             })
 
-        # Co-ouderschap overzicht voor huidige week
         coparenting = {}
         for child in children:
             pres_cfg = child_presence.get(child, {})

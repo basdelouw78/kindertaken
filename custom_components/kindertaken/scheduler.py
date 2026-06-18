@@ -1,4 +1,4 @@
-"""Taakplanner v2.2 — eerlijke fallback bij afwezigheid."""
+"""Taakplanner — eerlijke fallback bij afwezigheid."""
 from __future__ import annotations
 from datetime import date, timedelta
 import math
@@ -31,13 +31,6 @@ def _fewest_tasks_child(candidates: list[str], already_assigned: dict[str, int])
 # ── Rotatietaken ─────────────────────────────────────────────────────────────
 
 def rotation_assignments(task_cfg, children, presence_map, d: date, assigned_count=None) -> list[dict]:
-    """
-    Dagelijkse rotatietaken.
-    - Roteert cyclisch op basis van datum
-    - Slaat kinderen over die er niet zijn
-    - Fallback: kind met minste taken die dag
-    assigned_count: dict {kind: aantal_taken} voor eerlijke verdeling
-    """
     if assigned_count is None:
         assigned_count = {c: 0 for c in children}
 
@@ -56,7 +49,6 @@ def rotation_assignments(task_cfg, children, presence_map, d: date, assigned_cou
             order = [c for c in (task.get("children_order") or children) if c in available]
             if not order:
                 continue
-            # Roteer op basis van dag + taak-index
             child = order[(day_idx + i) % len(order)]
 
         assigned_count[child] = assigned_count.get(child, 0) + 1
@@ -67,10 +59,6 @@ def rotation_assignments(task_cfg, children, presence_map, d: date, assigned_cou
 # ── Weektaken ────────────────────────────────────────────────────────────────
 
 def week_assignments(task_cfg, children, presence_map, d: date, assigned_count=None) -> list[dict]:
-    """
-    Wekelijkse taken op vaste dag.
-    Fallback bij afwezigheid: kind met minste taken die dag.
-    """
     if assigned_count is None:
         assigned_count = {c: 0 for c in children}
 
@@ -97,7 +85,6 @@ def week_assignments(task_cfg, children, presence_map, d: date, assigned_count=N
             avail_ordered = [c for c in order if c in available]
             candidate = avail_ordered[week_num % len(avail_ordered)] if avail_ordered else ""
 
-        # Fallback als aangewezen kind niet beschikbaar is
         if not candidate or not child_available_on(presence_map.get(candidate,{}), d):
             if available:
                 candidate = _fewest_tasks_child(available, assigned_count)
@@ -113,9 +100,6 @@ def week_assignments(task_cfg, children, presence_map, d: date, assigned_count=N
 # ── Maandtaken ───────────────────────────────────────────────────────────────
 
 def month_assignments_for_date(task_cfg, children, presence_map, d: date) -> list[dict]:
-    """
-    Maandtaken. Als trigger-dag niet beschikbaar: verschuif max 6 dagen.
-    """
     result = []
     for task in task_cfg:
         all_ch = task.get("all_children", True)
@@ -134,7 +118,6 @@ def month_assignments_for_date(task_cfg, children, presence_map, d: date) -> lis
             if not trigger:
                 continue
 
-            # Verschuif als kind niet beschikbaar is (max 6 dagen)
             actual = trigger
             for offset in range(7):
                 check = trigger + timedelta(days=offset)

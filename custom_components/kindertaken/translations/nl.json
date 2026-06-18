@@ -8,29 +8,29 @@
       },
       "children": {
         "title": "Stap 1 — Kinderen",
-        "description": "{uitleg}",
+        "description": "Voer de namen in, gescheiden door een komma.\nBijvoorbeeld: Emma, Liam, Sophie\n\nZijn de kinderen altijd tegelijk bij jou thuis?\n• Ja (vinkje aan) → alle kinderen zijn er altijd, geen co-ouderschap\n• Nee (vinkje uit) → elk kind heeft een eigen rooster (co-ouderschap)",
         "data": {
-          "children": "Namen (komma-gescheiden, bijv. Emma, Liam)",
+          "children": "Namen (komma-gescheiden)",
           "samen": "Alle kinderen zijn altijd tegelijk thuis"
         }
       },
       "child_a": {
         "title": "Kind {n} van {total}: {kind}",
-        "description": "{uitleg}",
+        "description": "Kies een kleur zodat {kind} herkenbaar is op het dashboard.\n\nKies daarna het aanwezigheidspatroon:\n🏠 Altijd thuis — {kind} woont altijd bij jou\n🔄 Om de week — week A bij jou, week B bij andere ouder\n📅 Vaste dagen — bijv. elk weekend bij jou\n🗓️ Bepaalde weken — bijv. 1e en 3e week van de maand\n🔄📅 Combinatie — om de week én alleen op vaste dagen",
         "data": {
-          "kleur":   "Kleur op het dashboard",
+          "kleur": "Kleur op het dashboard",
           "patroon": "Aanwezigheidspatroon"
         }
       },
       "child_b": {
-        "title": "Kind {n} van {total}: {kind} — aanwezigheid",
+        "title": "Kind {n} van {total}: {kind} — vervolg",
         "description": "{uitleg}",
         "data": {
-          "startdatum":    "Startdatum (eerste maandag van week A, bijv. 2025-01-06)",
-          "startweek":     "Aanwezig in de startweek",
-          "dag_0": "Maandag aanwezig",   "dag_1": "Dinsdag aanwezig",
-          "dag_2": "Woensdag aanwezig",  "dag_3": "Donderdag aanwezig",
-          "dag_4": "Vrijdag aanwezig",   "dag_5": "Zaterdag aanwezig",
+          "startdatum": "Startdatum (eerste maandag van week A, bijv. 2025-01-06)",
+          "startweek": "Aanwezig in de startweek",
+          "dag_0": "Maandag aanwezig", "dag_1": "Dinsdag aanwezig",
+          "dag_2": "Woensdag aanwezig", "dag_3": "Donderdag aanwezig",
+          "dag_4": "Vrijdag aanwezig", "dag_5": "Zaterdag aanwezig",
           "dag_6": "Zondag aanwezig",
           "mweek_0": "1e week van de maand", "mweek_1": "2e week van de maand",
           "mweek_2": "3e week van de maand", "mweek_3": "4e week van de maand",
@@ -48,53 +48,31 @@
         "title": "Dagelijkse rotatietaken",
         "description": "{uitleg}",
         "data": {
-          "taak_0":     "Afwasmachine vullen",
-          "taak_1":     "Tafel dekken / opruimen",
-          "extra_taken":"Extra dagelijkse taken (komma-gescheiden)",
-          "volgorde":   "Rotatievolgorde kinderen (komma-gescheiden)"
+          "taken":    "Taken (komma-gescheiden)",
+          "volgorde": "Rotatievolgorde kinderen (komma-gescheiden)"
         }
       },
       "week_tasks": {
         "title": "Wekelijkse taken",
         "description": "{uitleg}",
         "data": {
-          "wtaak_0": "Stofzuigen",
-          "wtaak_1": "Vuilnis buiten zetten",
-          "wtaak_2": "Plastic buiten zetten",
-          "wtaak_3": "Container buiten zetten",
-          "wtaak_4": "Afvalbakken leegmaken",
-          "wdag_0":  "Stofzuigen — op welke dag?",
-          "wdag_1":  "Vuilnis buiten — op welke dag?",
-          "wdag_2":  "Plastic buiten — op welke dag?",
-          "wdag_3":  "Container buiten — op welke dag?",
-          "wdag_4":  "Afvalbakken — op welke dag?",
-          "wmodus_0":"Stofzuigen — verdeling",
-          "wmodus_1":"Vuilnis buiten — verdeling",
-          "wmodus_2":"Plastic buiten — verdeling",
-          "wmodus_3":"Container buiten — verdeling",
-          "wmodus_4":"Afvalbakken — verdeling",
-          "extra_taken":"Extra wekelijkse taken (komma-gescheiden)"
+          "taken": "Taken (komma-gescheiden, leeg laten = geen weektaken)",
+          "dag":   "Op welke dag?",
+          "modus": "Verdeling"
         }
       },
       "month_tasks": {
         "title": "Maandtaken",
         "description": "{uitleg}",
         "data": {
-          "mtaak_0": "Kamer opruimen",
-          "mtaak_1": "Ramen lappen",
-          "mtaak_2": "Badkamer schoonmaken",
-          "mwk_0":   "Kamer opruimen — welke week?",
-          "mwk_1":   "Ramen lappen — welke week?",
-          "mwk_2":   "Badkamer — welke week?",
-          "mdag_0":  "Kamer opruimen — welke dag?",
-          "mdag_1":  "Ramen lappen — welke dag?",
-          "mdag_2":  "Badkamer — welke dag?",
-          "extra_taken":"Extra maandtaken (komma-gescheiden)"
+          "taken": "Taken (komma-gescheiden, leeg laten = geen maandtaken)",
+          "week":  "Welke week van de maand?",
+          "dag":   "Op welke dag?"
         }
       }
     },
     "error": {
-      "min_one_child":      "Voer minimaal één naam in.",
+      "min_one_child": "Voer minimaal één naam in.",
       "max_eight_children": "Maximaal 8 kinderen."
     },
     "abort": { "already_configured": "Kindertaken is al geconfigureerd." }
@@ -104,16 +82,16 @@
       "init": {
         "title": "Wat wil je aanpassen?",
         "menu_options": {
-          "edit_children":       "👨‍👩‍👧  Kinderen (namen)",
+          "edit_children": "👨‍👩‍👧  Kinderen (namen)",
           "edit_child_settings": "⚙️  Kind-instellingen (aanwezigheid, kleur, blokdagen)",
           "edit_rotation_tasks": "🔄  Dagelijkse rotatietaken",
-          "edit_week_tasks":     "📅  Wekelijkse taken",
-          "edit_month_tasks":    "🗓️  Maandtaken"
+          "edit_week_tasks": "📅  Wekelijkse taken",
+          "edit_month_tasks": "🗓️  Maandtaken"
         }
       },
       "edit_children": {
         "title": "Kinderen bijwerken",
-        "description": "Voer alle namen opnieuw in, gescheiden door komma's. Verwijder je een naam, dan valt dat kind weg uit de planning.",
+        "description": "Voer alle namen opnieuw in, gescheiden door komma's.\nVerwijder je een naam, dan valt dat kind weg uit de planning.",
         "data": { "children": "Namen (komma-gescheiden)" }
       },
       "edit_child_settings": {
@@ -125,75 +103,52 @@
         "title": "Instellingen voor {kind}",
         "description": "{uitleg}",
         "data": {
-          "kleur":   "Kleur op het dashboard",
+          "kleur": "Kleur",
           "patroon": "Aanwezigheidspatroon"
         }
       },
       "edit_child_b": {
-        "title": "Instellingen voor {kind} — aanwezigheid",
+        "title": "Instellingen voor {kind} — vervolg",
         "description": "{uitleg}",
         "data": {
-          "startdatum":    "Startdatum (JJJJ-MM-DD)",
-          "startweek":     "Aanwezig in de startweek",
-          "dag_0": "Maandag aanwezig",   "dag_1": "Dinsdag aanwezig",
-          "dag_2": "Woensdag aanwezig",  "dag_3": "Donderdag aanwezig",
-          "dag_4": "Vrijdag aanwezig",   "dag_5": "Zaterdag aanwezig",
+          "startdatum": "Startdatum (JJJJ-MM-DD)",
+          "startweek": "Aanwezig in de startweek",
+          "dag_0": "Maandag aanwezig", "dag_1": "Dinsdag aanwezig",
+          "dag_2": "Woensdag aanwezig", "dag_3": "Donderdag aanwezig",
+          "dag_4": "Vrijdag aanwezig", "dag_5": "Zaterdag aanwezig",
           "dag_6": "Zondag aanwezig",
-          "mweek_0": "1e week",  "mweek_1": "2e week",
-          "mweek_2": "3e week",  "mweek_3": "4e week",
-          "mweek_laatste": "Laatste week",
-          "blok_0": "Maandag — geen tijd",  "blok_1": "Dinsdag — geen tijd",
+          "mweek_0": "1e week", "mweek_1": "2e week", "mweek_2": "3e week",
+          "mweek_3": "4e week", "mweek_laatste": "Laatste week",
+          "blok_0": "Maandag — geen tijd", "blok_1": "Dinsdag — geen tijd",
           "blok_2": "Woensdag — geen tijd", "blok_3": "Donderdag — geen tijd",
-          "blok_4": "Vrijdag — geen tijd",  "blok_5": "Zaterdag — geen tijd",
+          "blok_4": "Vrijdag — geen tijd", "blok_5": "Zaterdag — geen tijd",
           "blok_6": "Zondag — geen tijd"
         }
       },
       "edit_rotation_tasks": {
         "title": "Dagelijkse rotatietaken aanpassen",
-        "description": "Vink de taken aan die je wilt gebruiken. Voeg eigen taken toe in het tekstveld. De volgorde bepaalt wie er wanneer aan de beurt is.",
+        "description": "{uitleg}",
         "data": {
-          "taak_0":     "Afwasmachine vullen",
-          "taak_1":     "Tafel dekken / opruimen",
-          "extra_taken":"Extra taken (komma-gescheiden)",
-          "volgorde":   "Rotatievolgorde kinderen (komma-gescheiden)"
+          "taken": "Taken (komma-gescheiden)",
+          "volgorde": "Rotatievolgorde kinderen"
         }
       },
       "edit_week_tasks": {
         "title": "Wekelijkse taken aanpassen",
-        "description": "Vink de taken aan die je wilt gebruiken. Per taak kun je de dag en de verdeling instellen.",
+        "description": "{uitleg}",
         "data": {
-          "wtaak_0": "Stofzuigen",
-          "wtaak_1": "Vuilnis buiten zetten",
-          "wtaak_2": "Plastic buiten zetten",
-          "wtaak_3": "Container buiten zetten",
-          "wtaak_4": "Afvalbakken leegmaken",
-          "wdag_0":  "Stofzuigen — op welke dag?",
-          "wdag_1":  "Vuilnis buiten — op welke dag?",
-          "wdag_2":  "Plastic buiten — op welke dag?",
-          "wdag_3":  "Container buiten — op welke dag?",
-          "wdag_4":  "Afvalbakken — op welke dag?",
-          "wmodus_0":"Stofzuigen — verdeling",
-          "wmodus_1":"Vuilnis buiten — verdeling",
-          "wmodus_2":"Plastic buiten — verdeling",
-          "wmodus_3":"Container buiten — verdeling",
-          "wmodus_4":"Afvalbakken — verdeling",
-          "extra_taken":"Extra taken (komma-gescheiden)"
+          "taken": "Taken (komma-gescheiden)",
+          "dag": "Op welke dag?",
+          "modus": "Verdeling"
         }
       },
       "edit_month_tasks": {
         "title": "Maandtaken aanpassen",
-        "description": "Vink de taken aan die je wilt gebruiken. Per taak kun je de week en dag van de maand instellen.",
+        "description": "{uitleg}",
         "data": {
-          "mtaak_0": "Kamer opruimen",
-          "mtaak_1": "Ramen lappen",
-          "mtaak_2": "Badkamer schoonmaken",
-          "mwk_0":   "Kamer opruimen — welke week?",
-          "mwk_1":   "Ramen lappen — welke week?",
-          "mwk_2":   "Badkamer — welke week?",
-          "mdag_0":  "Kamer opruimen — welke dag?",
-          "mdag_1":  "Ramen lappen — welke dag?",
-          "mdag_2":  "Badkamer — welke dag?",
-          "extra_taken":"Extra taken (komma-gescheiden)"
+          "taken": "Taken (komma-gescheiden)",
+          "week": "Welke week van de maand?",
+          "dag": "Op welke dag?"
         }
       }
     },

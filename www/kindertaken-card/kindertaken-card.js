@@ -256,22 +256,19 @@ class KindertakenCard extends HTMLElement {
   static getStubConfig(){ return {entity:"sensor.kindertaken_week"}; }
 }
 
-// FIX: guard against _config being undefined in connectedCallback
 class KindertakenCardEditor extends HTMLElement {
   constructor() {
     super();
-    this._config = {};  // altijd initialiseren in constructor
+    this._config = {};
   }
 
   setConfig(c) {
     this._config = c || {};
-    // Als de DOM al gebouwd is, update de input waarde
     var inp = this.querySelector("#e");
     if (inp) inp.value = this._config.entity || "sensor.kindertaken_week";
   }
 
   connectedCallback() {
-    // Veilig: _config is altijd een object dankzij constructor + setConfig
     var e = (this._config && this._config.entity) || "sensor.kindertaken_week";
     this.innerHTML =
       '<div style="padding:16px">' +

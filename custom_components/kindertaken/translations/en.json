@@ -3,85 +3,70 @@
     "step": {
       "user": {
         "title": "Kindertaken Planner",
-        "description": "Welcome. Choose your language to continue.",
+        "description": "Choose your language to continue.",
         "data": { "taal": "Language" }
       },
       "children": {
         "title": "Step 1 — Children",
-        "description": "{uitleg}",
+        "description": "Enter the children's names separated by commas.\nFor example: Emma, Liam, Sophie\n\nAre all children always home at the same time?\n• Yes (checked) → no co-parenting, all children follow the same schedule\n• No (unchecked) → each child gets their own individual presence pattern",
         "data": {
-          "children": "Names (comma-separated, e.g. Emma, Liam)",
+          "children": "Names (comma-separated)",
           "samen": "All children are always home at the same time"
         }
       },
       "child_a": {
-        "title": "Child {n} of {total}: {kind}",
-        "description": "{uitleg}",
+        "title": "Setting up child {n} of {total}: {kind}",
+        "description": "Choose a colour so {kind} is easy to recognise on the dashboard.\n\nThen choose the presence pattern:\n🏠 Always home — {kind} lives with you full time\n🔄 Alternate weeks — week A here, week B with other parent\n📅 Fixed days — e.g. every weekend with you\n🗓️ Specific weeks — e.g. 1st and 3rd week of the month\n🔄📅 Combination — alternate weeks AND only on fixed days",
         "data": {
-          "kleur":   "Colour on the dashboard",
+          "kleur": "Colour for the dashboard",
           "patroon": "Presence pattern"
         }
       },
       "child_b": {
-        "title": "Child {n} of {total}: {kind} — presence",
+        "title": "Child {n} of {total}: {kind} — continued",
         "description": "{uitleg}",
         "data": {
-          "startdatum":    "Start date (first Monday of week A, e.g. 2025-01-06)",
-          "startweek":     "Present in the start week",
-          "dag_0": "Monday present",    "dag_1": "Tuesday present",
-          "dag_2": "Wednesday present", "dag_3": "Thursday present",
-          "dag_4": "Friday present",    "dag_5": "Saturday present",
-          "dag_6": "Sunday present",
+          "startdatum": "Start date (first Monday of a week when present, e.g. 2025-01-06)",
+          "startweek": "Present in the start week",
+          "dag_0": "Monday", "dag_1": "Tuesday", "dag_2": "Wednesday",
+          "dag_3": "Thursday", "dag_4": "Friday", "dag_5": "Saturday", "dag_6": "Sunday",
           "mweek_0": "1st week of the month", "mweek_1": "2nd week",
-          "mweek_2": "3rd week",              "mweek_3": "4th week",
-          "mweek_laatste": "Last week of the month",
-          "blok_0": "Monday — no time for tasks", "blok_1": "Tuesday — no time",
-          "blok_2": "Wednesday — no time",        "blok_3": "Thursday — no time",
-          "blok_4": "Friday — no time",           "blok_5": "Saturday — no time",
-          "blok_6": "Sunday — no time"
+          "mweek_2": "3rd week", "mweek_3": "4th week", "mweek_laatste": "Last week of the month",
+          "blok_0": "Monday — no time for tasks",
+          "blok_1": "Tuesday — no time", "blok_2": "Wednesday — no time",
+          "blok_3": "Thursday — no time", "blok_4": "Friday — no time",
+          "blok_5": "Saturday — no time", "blok_6": "Sunday — no time"
         }
       },
       "rotation_tasks": {
         "title": "Daily rotation tasks",
         "description": "{uitleg}",
         "data": {
-          "taak_0":     "Load dishwasher",
-          "taak_1":     "Set / clear table",
-          "extra_taken":"Extra daily tasks (comma-separated)",
-          "volgorde":   "Rotation order (names, comma-separated)"
+          "taken":    "Tasks (comma-separated)",
+          "volgorde": "Rotation order (names, comma-separated)"
         }
       },
       "week_tasks": {
         "title": "Weekly tasks",
         "description": "{uitleg}",
         "data": {
-          "wtaak_0": "Vacuum",           "wtaak_1": "Take out bins",
-          "wtaak_2": "Take out plastic", "wtaak_3": "Take out container",
-          "wtaak_4": "Empty indoor bins",
-          "wdag_0":  "Vacuum — which day?",       "wdag_1": "Bins — which day?",
-          "wdag_2":  "Plastic — which day?",      "wdag_3": "Container — which day?",
-          "wdag_4":  "Indoor bins — which day?",
-          "wmodus_0":"Vacuum — distribution",     "wmodus_1": "Bins — distribution",
-          "wmodus_2":"Plastic — distribution",    "wmodus_3": "Container — distribution",
-          "wmodus_4":"Indoor bins — distribution",
-          "extra_taken":"Extra weekly tasks (comma-separated)"
+          "taken": "Tasks (comma-separated, leave empty for none)",
+          "dag":   "Which day?",
+          "modus": "Distribution"
         }
       },
       "month_tasks": {
         "title": "Monthly tasks",
         "description": "{uitleg}",
         "data": {
-          "mtaak_0": "Tidy room",      "mtaak_1": "Clean windows",  "mtaak_2": "Clean bathroom",
-          "mwk_0":   "Tidy room — which week?",   "mwk_1": "Windows — which week?",
-          "mwk_2":   "Bathroom — which week?",
-          "mdag_0":  "Tidy room — which day?",    "mdag_1": "Windows — which day?",
-          "mdag_2":  "Bathroom — which day?",
-          "extra_taken":"Extra monthly tasks (comma-separated)"
+          "taken": "Tasks (comma-separated, leave empty for none)",
+          "week":  "Which week of the month?",
+          "dag":   "Which day?"
         }
       }
     },
     "error": {
-      "min_one_child":      "Enter at least one name.",
+      "min_one_child": "Enter at least one name.",
       "max_eight_children": "Maximum 8 children."
     },
     "abort": { "already_configured": "Kindertaken is already configured." }
@@ -91,11 +76,11 @@
       "init": {
         "title": "What would you like to change?",
         "menu_options": {
-          "edit_children":       "👨‍👩‍👧  Children (names)",
+          "edit_children": "👨‍👩‍👧  Children (names)",
           "edit_child_settings": "⚙️  Child settings (presence, colour, blocked days)",
           "edit_rotation_tasks": "🔄  Daily rotation tasks",
-          "edit_week_tasks":     "📅  Weekly tasks",
-          "edit_month_tasks":    "🗓️  Monthly tasks"
+          "edit_week_tasks": "📅  Weekly tasks",
+          "edit_month_tasks": "🗓️  Monthly tasks"
         }
       },
       "edit_children": {
@@ -112,60 +97,50 @@
         "title": "Settings for {kind}",
         "description": "{uitleg}",
         "data": {
-          "kleur":   "Colour on the dashboard",
+          "kleur": "Colour",
           "patroon": "Presence pattern"
         }
       },
       "edit_child_b": {
-        "title": "Settings for {kind} — presence",
+        "title": "Settings for {kind} — continued",
         "description": "{uitleg}",
         "data": {
-          "startdatum": "Start date (YYYY-MM-DD)", "startweek": "Present in start week",
-          "dag_0": "Monday", "dag_1": "Tuesday",   "dag_2": "Wednesday",
-          "dag_3": "Thursday","dag_4": "Friday",   "dag_5": "Saturday", "dag_6": "Sunday",
-          "mweek_0": "1st week","mweek_1": "2nd week","mweek_2": "3rd week",
-          "mweek_3": "4th week","mweek_laatste": "Last week",
-          "blok_0": "Mon — no time","blok_1": "Tue — no time","blok_2": "Wed — no time",
-          "blok_3": "Thu — no time","blok_4": "Fri — no time","blok_5": "Sat — no time",
-          "blok_6": "Sun — no time"
+          "startdatum": "Start date (YYYY-MM-DD)",
+          "startweek": "Present in start week",
+          "dag_0": "Monday", "dag_1": "Tuesday", "dag_2": "Wednesday",
+          "dag_3": "Thursday", "dag_4": "Friday", "dag_5": "Saturday", "dag_6": "Sunday",
+          "mweek_0": "1st week", "mweek_1": "2nd week", "mweek_2": "3rd week",
+          "mweek_3": "4th week", "mweek_laatste": "Last week",
+          "blok_0": "Monday — no time", "blok_1": "Tuesday — no time",
+          "blok_2": "Wednesday — no time", "blok_3": "Thursday — no time",
+          "blok_4": "Friday — no time", "blok_5": "Saturday — no time",
+          "blok_6": "Sunday — no time"
         }
       },
       "edit_rotation_tasks": {
         "title": "Update daily rotation tasks",
-        "description": "Check the tasks you want to use. Add custom tasks in the text field.",
+        "description": "{uitleg}",
         "data": {
-          "taak_0":     "Load dishwasher",
-          "taak_1":     "Set / clear table",
-          "extra_taken":"Extra tasks (comma-separated)",
-          "volgorde":   "Rotation order (comma-separated)"
+          "taken": "Tasks (comma-separated)",
+          "volgorde": "Rotation order"
         }
       },
       "edit_week_tasks": {
         "title": "Update weekly tasks",
-        "description": "Check the tasks you want. Set the day and distribution per task.",
+        "description": "{uitleg}",
         "data": {
-          "wtaak_0": "Vacuum",           "wtaak_1": "Take out bins",
-          "wtaak_2": "Take out plastic", "wtaak_3": "Take out container",
-          "wtaak_4": "Empty indoor bins",
-          "wdag_0":  "Vacuum — which day?",       "wdag_1": "Bins — which day?",
-          "wdag_2":  "Plastic — which day?",      "wdag_3": "Container — which day?",
-          "wdag_4":  "Indoor bins — which day?",
-          "wmodus_0":"Vacuum — distribution",     "wmodus_1": "Bins — distribution",
-          "wmodus_2":"Plastic — distribution",    "wmodus_3": "Container — distribution",
-          "wmodus_4":"Indoor bins — distribution",
-          "extra_taken":"Extra tasks (comma-separated)"
+          "taken": "Tasks (comma-separated)",
+          "dag": "Which day?",
+          "modus": "Distribution"
         }
       },
       "edit_month_tasks": {
         "title": "Update monthly tasks",
-        "description": "Check the tasks you want. Set the week and day of the month per task.",
+        "description": "{uitleg}",
         "data": {
-          "mtaak_0": "Tidy room",      "mtaak_1": "Clean windows",  "mtaak_2": "Clean bathroom",
-          "mwk_0":   "Tidy room — which week?",   "mwk_1": "Windows — which week?",
-          "mwk_2":   "Bathroom — which week?",
-          "mdag_0":  "Tidy room — which day?",    "mdag_1": "Windows — which day?",
-          "mdag_2":  "Bathroom — which day?",
-          "extra_taken":"Extra tasks (comma-separated)"
+          "taken": "Tasks (comma-separated)",
+          "week": "Which week of the month?",
+          "dag": "Which day?"
         }
       }
     },

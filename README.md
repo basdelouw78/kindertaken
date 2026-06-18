@@ -17,6 +17,7 @@ Kindvriendelijke HACS integratie voor het bijhouden van huishoudtaken per kind. 
 | 🔄 Rotatietaken | Dagelijks, roulerend — systeem berekent automatisch wie aan de beurt is |
 | 📅 Weektaken | Wekelijks op vaste dag — automatisch, even/oneven weken, of vast kind |
 | 🗓️ Maandtaken | 1× per maand, vaste week + dag — automatisch doorschuiven bij afwezigheid |
+| ✏️ Vrije taken | Alle taken vrij in te voeren als komma-gescheiden tekst — geen vaste lijst |
 | ✅ Afvinken | Taken op het dashboard aanklikken = afgevinkt (persistent na herstart) |
 | 🔁 Eerlijke verdeling | Afwezig kind? Taken gaan naar kind met minste taken die dag |
 
@@ -63,9 +64,11 @@ De wizard begeleidt je stap voor stap:
 1. **Taal kiezen** — NL / EN / DE / FR
 2. **Kinderen** — namen invoeren + zijn ze tegelijk thuis?
 3. **Per kind** — kleur + aanwezigheidspatroon instellen
-4. **Rotatietaken** — dagelijkse taken die automatisch rouleren
-5. **Weektaken** — wekelijks op vaste dag
-6. **Maandtaken** — maandelijks met vaste week + dag
+4. **Rotatietaken** — vul de taaknamen in, komma-gescheiden (bijv. "Afwasmachine vullen, Tafel dekken")
+5. **Weektaken** — taaknamen + gezamenlijke dag + verdeling
+6. **Maandtaken** — taaknamen + gezamenlijke week + dag
+
+Alle taken zijn vrij te benoemen — er is geen vaste lijst meer om uit te kiezen.
 
 ### 5. Dashboard kaart toevoegen
 
@@ -85,6 +88,20 @@ entity: sensor.kindertaken_week
 | 📅 Vaste dagen | Bijv. elk weekend (vr/za/zo) bij jou |
 | 🗓️ Bepaalde weken | Bijv. 1e en 3e week van de maand |
 | 🔄📅 Combinatie | Om de week én alleen op vaste dagen |
+
+---
+
+## ✏️ Taken aanpassen na setup
+
+Via **Instellingen → Apparaten & Diensten → Kindertaken → Configureren** kun je alles wijzigen:
+
+- **Kinderen** — namen toevoegen/verwijderen
+- **Kind-instellingen** — kleur, aanwezigheidspatroon, blokdagen per kind
+- **Rotatietaken** — taaknamen + volgorde aanpassen
+- **Wekelijkse taken** — taaknamen + dag + verdeling aanpassen
+- **Maandtaken** — taaknamen + week + dag aanpassen
+
+Alle taakvelden zijn vrije tekstvelden (komma-gescheiden) — type gewoon de namen die je wilt gebruiken.
 
 ---
 

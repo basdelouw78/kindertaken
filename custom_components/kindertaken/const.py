@@ -1,4 +1,4 @@
-"""Constanten voor de Kindertaken Planner v2.2."""
+"""Constanten voor de Kindertaken Planner."""
 
 DOMAIN = "kindertaken"
 PLATFORMS = ["sensor"]

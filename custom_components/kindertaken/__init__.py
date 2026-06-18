@@ -18,13 +18,7 @@ async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry) ->
         config_entry.version,
         8,
     )
-    # Alle vorige versies (1-7) zijn compatibel met versie 8:
-    # de config structuur is achterwaarts compatibel — nieuwe velden
-    # hebben standaardwaarden in de sensor/scheduler code.
-    # We hoeven alleen de versie te bumpen.
     new_data = dict(config_entry.data)
-
-    # Zorg dat verplichte velden aanwezig zijn met defaults
     new_data.setdefault("lang", "nl")
     new_data.setdefault("children", [])
     new_data.setdefault("child_colors", {})
